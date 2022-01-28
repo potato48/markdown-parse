@@ -38,8 +38,10 @@ public class MarkdownParse {
             if (markdown.substring(nextOpenBracket - 1, nextOpenBracket).contains("!")) {
                 break;
             }
-
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            if (markdown.substring(openParen, closeParen).contains(".html") ||
+                    markdown.substring(openParen, closeParen).contains("https")) {
+                toReturn.add(markdown.substring(openParen + 1, closeParen));
+            }
 
             currentIndex = closeParen + 1;
             System.out.println("End: " + currentIndex);
