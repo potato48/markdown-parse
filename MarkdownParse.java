@@ -38,6 +38,10 @@ public class MarkdownParse {
             if (markdown.substring(nextOpenBracket - 1, nextOpenBracket).contains("!")) {
                 break;
             }
+            int startOfURL = markdown.substring(openParen, closeParen).indexOf("https");
+            if (startOfURL > 0) {
+                openParen = openParen + startOfURL - 1;
+            }
             if (markdown.substring(openParen, closeParen).contains(".html") ||
                     markdown.substring(openParen, closeParen).contains("https")) {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
