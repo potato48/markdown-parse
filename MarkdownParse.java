@@ -11,14 +11,40 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then take up to
         // the next )
         int currentIndex = 0;
-        while (currentIndex < markdown.length()) {
+        int iterationLimit = 0;
+
+        // add buffer to markdown string
+        markdown = "   " + markdown;
+
+        while (currentIndex < markdown.length() && iterationLimit < 30) {
+            System.out.println("Start: " + currentIndex);
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
+            if (nextOpenBracket == -1) {
+                break;
+            }
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+            if (nextCloseBracket == -1) {
+                break;
+            }
             int openParen = markdown.indexOf("(", nextCloseBracket);
+            if (openParen == -1 || openParen != nextCloseBracket + 1) {
+                break;
+            }
             int closeParen = markdown.indexOf(")", openParen);
+            if (closeParen == -1) {
+                break;
+            }
+
+            if (markdown.substring(nextOpenBracket - 1, nextOpenBracket).contains("!")) {
+                break;
+            }
+
             toReturn.add(markdown.substring(openParen + 1, closeParen));
+
             currentIndex = closeParen + 1;
-            // System.out.println(currentIndex);
+            System.out.println("End: " + currentIndex);
+            iterationLimit++;
+
         }
         return toReturn;
     }

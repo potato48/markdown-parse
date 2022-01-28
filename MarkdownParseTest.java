@@ -20,7 +20,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-fileA.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("https://something.com", "some-page.html");
+        List<String> expected = List.of("https://something.com", "some-page.html");
         assertEquals(expected, links);
     }
 
@@ -30,7 +30,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-fileB.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("");
+        List<String> expected = new ArrayList<String>();
         assertEquals(expected, links);
     }
 
@@ -40,7 +40,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-fileC.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("https://something.com");
+        List<String> expected = List.of("https://something.com");
         assertEquals(expected, links);
     }
 
@@ -50,7 +50,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-fileD.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("");
+        List<String> expected = new ArrayList<String>();
         assertEquals(expected, links);
     }
 
@@ -60,7 +60,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-file.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("https://something.com", "some-page.html");
+        List<String> expected = List.of("https://something.com", "some-page.html");
         assertEquals(expected, links);
     }
 
@@ -70,7 +70,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-file2.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("https://something.com", "some-page.html");
+        List<String> expected = List.of("https://something.com", "some-page.html");
         assertEquals(expected, links);
     }
 
@@ -80,7 +80,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-file3.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("");
+        List<String> expected = new ArrayList<String>();
         assertEquals(expected, links);
     }
 
@@ -90,7 +90,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-file4.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("");
+        List<String> expected = new ArrayList<String>();
         assertEquals(expected, links);
     }
 
@@ -100,7 +100,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-file5.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("");
+        List<String> expected = new ArrayList<String>();
         assertEquals(expected, links);
     }
 
@@ -110,7 +110,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-file6.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("");
+        List<String> expected = new ArrayList<String>();
         assertEquals(expected, links);
     }
 
@@ -120,7 +120,7 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-file7.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("");
+        List<String> expected = new ArrayList<String>();
         assertEquals(expected, links);
     }
 
@@ -130,7 +130,8 @@ public class MarkdownParseTest {
         Path filename = Path.of("test-file8.md");
         String contents = Files.readString(filename);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List expected = List.of("");
+        List<String> expected = new ArrayList<String>();
         assertEquals(expected, links);
     }
+
 }
