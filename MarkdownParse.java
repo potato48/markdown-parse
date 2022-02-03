@@ -17,7 +17,7 @@ public class MarkdownParse {
         markdown = "   " + markdown;
 
         while (currentIndex < markdown.length() && iterationLimit < 30) {
-            System.out.println("Start: " + currentIndex);
+            // System.out.println("Start: " + currentIndex);
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             if (nextOpenBracket == -1) {
                 break;
@@ -48,7 +48,7 @@ public class MarkdownParse {
             }
 
             currentIndex = closeParen + 1;
-            System.out.println("End: " + currentIndex);
+            // System.out.println("End: " + currentIndex);
             iterationLimit++;
 
         }
