@@ -1,19 +1,27 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+
 import org.commonmark.node.*;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
 class TryCommonMark {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Parser parser = Parser.builder().build();
         Node document = parser.parse("This is *Sparta*");
         HtmlRenderer renderer = HtmlRenderer.builder().build();
         System.out.println(renderer.render(document)); // "<p>This is <em>Sparta</em></p>\n"
 
         // visitor test
-        Node node = parser.parse("Example\n=======\n\nSome more text");
-        WordCountVisitor visitor = new WordCountVisitor();
+        Path fileName = Path.of("snippet1.md");
+        String contents = Files.readString(fileName);
+        Node node = parser
+                .parse(contents);
+        LinkVisitor visitor = new LinkVisitor();
         node.accept(visitor);
-        System.out.println(visitor.wordCount); // 4
+        System.out.println(visitor.links); // 4
     }
 }
 
@@ -32,5 +40,16 @@ class WordCountVisitor extends AbstractVisitor {
         // Descend into children (could be omitted in this case because Text nodes don't
         // have children).
         visitChildren(text);
+    }
+}
+
+class LinkVisitor extends AbstractVisitor {
+    ArrayList<String> links = new ArrayList<>();
+
+    @Override
+    public void visit(Link link) {
+        links.add(link.getDestination());
+
+        visitChildren(link);
     }
 }
